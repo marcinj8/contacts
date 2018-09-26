@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ContactBook from '../ContactBook/ContactBook';
+import AddContact from '../ContactBook/AddContact/AddContact';
 
 class Layout extends Component {
   state = {
@@ -10,37 +11,37 @@ class Layout extends Component {
       phone: 545544964,
       address: {
         city: 'Wroclaw',
-        street: 'grabiszynska',
+        street: 'Wrabiszynska',
       },
       details: false
     },
     {
       name: 'Tom Doe',
-      mail: 'mj@mail.com',
-      phone: 545544964,
+      mail: 'td@mail.com',
+      phone: 34538644,
       address: {
         city: 'Wroclaw',
-        street: 'grabiszynska',
+        street: 'Pereca',
       },
       details: false
     },
     {
       name: 'Anita Banita',
-      mail: 'mj@mail.com',
-      phone: 545544964,
+      mail: 'mabj@mail.com',
+      phone: 546546453,
       address: {
-        city: 'Wroclaw',
-        street: 'grabiszynska',
+        city: 'Warszawa',
+        street: 'Dzietrznicka',
       },
       details: false
     },
     {
       name: 'Harry Pieseł',
-      mail: 'mj@mail.com',
-      phone: 545544964,
+      mail: 'hp@mail.com',
+      phone: 8468413345,
       address: {
-        city: 'Wroclaw',
-        street: 'grabiszynska',
+        city: 'Zakopane',
+        street: 'Gorska',
       },
       details: false
     }]
@@ -50,7 +51,6 @@ class Layout extends Component {
     const contacts = this.state.contacts;
     const contact = contacts[id];
     contact.details = !contact.details
-
     this.setState({
       contacts: contacts
     })
@@ -60,6 +60,7 @@ class Layout extends Component {
     return (
       <div>
         Navigation
+        <AddContact />
         <ContactBook
           contacts={this.state.contacts}
           details={this.showDetails} />

@@ -6,7 +6,6 @@ const profiles = props => {
   let profiles = [];
 
   props.contacts.map((profile, i) => {
-    console.log(i)
     return profiles.push(
       <Profile
         key={profile.name + '/' + i}

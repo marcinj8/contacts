@@ -1,0 +1,44 @@
+.addContact__block {
+  background: rgb(207, 207, 207);
+  width: 70%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 25px auto;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px;
+}
+
+.addContact__block input {
+  width: 150px;
+  padding: 5px;
+  margin: 5px auto;
+  outline: none;
+  border-radius: 2px;
+  border: 1px solid transparent;
+}
+
+.addContact__input:hover {
+  background: rgb(173, 173, 173);
+  border: 1px solid rgb(89, 0, 172);
+
+}
+
+.addContact__input:focus,
+.addContact__input:active {
+  background: rgb(219, 219, 219);
+  border: 1px solid rgb(124, 13, 228);
+}
+
+.addContact__button {
+  width: 60px;
+  margin: 20px auto 0 auto;
+}
+
+@media(min-width: 450px) {
+  .addContact__block {
+    width: 300px;
+    padding: 30px;
+  }
+}
