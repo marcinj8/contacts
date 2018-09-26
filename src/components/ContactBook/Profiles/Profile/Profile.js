@@ -1,23 +1,28 @@
 import React from 'react';
 
+import Details from './Details/Details';
+
 import './Profile.css';
 
 const profile = props => {
+  let details = null;
+
+  if (props.details) {
+    details = (
+      <Details
+        mail={props.mail}
+        phone={props.phone}
+        city={props.city}
+        street={props.street} />
+    )
+  }
   return (
     <div className='profileCard'>
       <div className='profileCard__flex'>
         <div>{props.name}</div>
-        <div>{props.lastName}</div>
       </div>
-      <div className='profileCard__flex'>
-        <div>Mail: {props.mail}</div>
-        <div>Phone: {props.phone}</div>
-      </div>
-      <div className='profileCard__flex'>
-        <div>City: {props.city}</div>
-        <div>Street: {props.street}</div>
-      </div>
-        Edit contact
+        {details}
+      <button onClick={props.clicked}>Details</button>
     </div>
   )
 }
