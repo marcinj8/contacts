@@ -12,8 +12,8 @@ const profiles = props => {
         name={profile.name}
         mail={profile.mail}
         phone={profile.phone}
-        city={profile.address.city}
-        street={profile.address.street}
+        city={profile.city}
+        street={profile.street}
         details={profile.details}
         clicked={() => props.details(i)}/>
     )

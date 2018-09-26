@@ -8,10 +8,34 @@
   margin: 25px auto;
   border-radius: 2px;
   box-shadow: 3px 3px 5px;
+  transition: all .3s ease;
+}
+
+.active {
+  animation: showBlock 1s linear;
+}
+
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.noActive {
+  display: none
+}
+
+.addContact__title{
+  border-bottom: 2px solid rgb(124, 13, 228);
+  width: 195px;
+  margin: 0 auto 10px auto;
 }
 
 .addContact__block input {
-  width: 150px;
+  width: 180px;
   padding: 5px;
   margin: 5px auto;
   outline: none;
