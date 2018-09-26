@@ -1,0 +1,17 @@
+.profileCard{
+  width: 500px;
+  border: 1px solid blueviolet;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 4px 4px 10px rgb(49, 49, 49);
+  margin: 5px auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.profileCard__flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+.profileCard__flex div {
+  margin: 5px;
+}
