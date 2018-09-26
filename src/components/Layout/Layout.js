@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Navigation from '../Navigation/Navigation';
 import ContactBook from '../ContactBook/ContactBook';
 import AddContact from '../ContactBook/AddContact/AddContact';
 
@@ -62,7 +63,7 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        Navigation
+        <Navigation />
         <AddContact
           show={this.state.addContact}
           values={this.state.newContact}

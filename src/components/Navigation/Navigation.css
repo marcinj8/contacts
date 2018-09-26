@@ -1,0 +1,11 @@
+.navigation {
+  height: 80px;
+  width: 100%;
+  border-bottom: 1px solid blueviolet;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navigation__logoContainer{
+  width: 70%;
+}
