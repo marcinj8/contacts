@@ -13,8 +13,8 @@ class addContact extends Component {
     }
   }
 
-  componentWillMount() {
-    const form = this.state.newContact
+  componentDidMount() {
+    let form = this.state.newContact
     for (let key in form) {
       form[key] = '';
     }
@@ -24,7 +24,8 @@ class addContact extends Component {
     const updateNewContact = this.state.newContact;
     const property = event.target.name;
     updateNewContact[property] = event.target.value;
-    updateNewContact.display = false;
+    updateNewContact.details = false;
+    updateNewContact.editor = false;
     this.setState({
       newContact: updateNewContact
     });

@@ -1,5 +1,5 @@
-.profileCard{
-  width: 95%;
+.profileCard {
+  width: 99%;
   border-bottom: 1px solid rgb(124, 13, 228);
   background: white;
   box-shadow: 4px 4px 10px rgb(49, 49, 49);
@@ -7,10 +7,38 @@
   padding: 10px;
   box-sizing: border-box;
 }
-.profileCard__flex{
+
+.profileCard__flex {
   display: flex;
   flex-wrap: wrap;
 }
+
 .profileCard__flex div {
   margin: 5px;
+}
+
+.profileCard__button,
+.profileCard__button--delete {
+  margin: 0 3px;
+  border-radius: 2px;
+  border: 1px solid blueviolet;
+}
+
+.profileCard__button--delete {
+  margin: 0 3px;
+  background: rgb(255, 125, 125);
+  border: 1px solid rgb(245, 92, 92);
+}
+
+.profileCard__button--delete:hover {
+  margin: 0 3px;
+  background: rgb(255, 94, 94);
+  border: 1px solid rgb(255, 22, 22);
+}
+
+.profileCard__button--delete:active,
+.profileCard__button--delete:focus {
+  margin: 0 3px;
+  background: rgb(255, 125, 125);
+  border: 1px solid rgb(245, 92, 92);
 }

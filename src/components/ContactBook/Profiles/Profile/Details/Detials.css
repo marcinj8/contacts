@@ -1,0 +1,10 @@
+.detail__flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.detail__item {
+  border-bottom: 1px solid blueviolet;
+  margin: 5px 10px;
+}

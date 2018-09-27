@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Navigation from '../Navigation/Navigation';
 import ContactBook from '../ContactBook/ContactBook';
@@ -6,38 +7,7 @@ import AddContact from '../ContactBook/AddContact/AddContact';
 
 class Layout extends Component {
   state = {
-    contacts: [{
-      name: 'Marcin',
-      mail: 'mj@mail.com',
-      phone: 545544964,
-      city: 'Wroclaw',
-      street: 'Grabiszynska',
-      details: false
-    },
-    {
-      name: 'Tom Doe',
-      mail: 'td@mail.com',
-      phone: 34538644,
-      city: 'Wroclaw',
-      street: 'Pereca',
-      details: false
-    },
-    {
-      name: 'Anita Banita',
-      mail: 'mabj@mail.com',
-      phone: 546546453,
-      city: 'Warszawa',
-      street: 'Dzietrznicka',
-      details: false
-    },
-    {
-      name: 'Harry Pieseł',
-      mail: 'hp@mail.com',
-      phone: 8468413345,
-      city: 'Zakopane',
-      street: 'Gorska',
-      details: false
-    }],
+    contacts: [],
     navigation: {
       addContact: false,
       concactBook: true,
@@ -45,13 +15,36 @@ class Layout extends Component {
     }
   };
 
-  addContactHandler = (newConact) => {
+  componentDidMount() {
+    axios.get('https://contactmenager.firebaseio.com/contacts.json')
+    .then(res => this.setContacts(res.data))
+    .catch(err => console.log(err))
+  }
+
+  setContacts = response => {
+    const contacts = [];
+    for (let key in response) {
+      contacts.push(response[key])
+    }
+    this.setState({
+      contacts: contacts
+    })
+  }
+
+  addContactAxios = newContactData => {
+    axios.post('https://contactmenager.firebaseio.com/contacts.json', newContactData)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
+  addContactHandler = (newContact) => {
     const updateContacts = this.state.contacts;
-    const newContact = newConact;
+    this.addContactAxios(newContact)
     updateContacts.push(newContact);
     this.setState({
       contacts: updateContacts
     });
+    this.setActiv('concactBook');
   }
 
   showDetails = id => {
@@ -94,18 +87,24 @@ class Layout extends Component {
   }
 
   render() {
+    let addContact = null;
+    if (this.state.navigation.addContact) {
+      addContact = <AddContact
+        show={this.state.navigation.addContact}
+        values={this.state.newContact}
+        clicked={this.addContactHandler} />
+    }
+
     return (
       <div>
         <Navigation
           navitateTo={this.navigationHandler} />
-        <AddContact
-          show={this.state.navigation.addContact}
-          values={this.state.newContact}
-          clicked={this.addContactHandler} />
+        {addContact}
         <ContactBook
           show={this.state.navigation.concactBook}
           contacts={this.state.contacts}
-          details={this.showDetails} />
+          toggleDetails={this.showDetails}
+          edit={this.showEditor} />
       </div>
     );
   }

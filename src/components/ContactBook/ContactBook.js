@@ -16,7 +16,8 @@ const contactBook = props => {
     <div className={style.join(' ')}>
       <Profiles 
       contacts={props.contacts}
-      details={props.details}/>
+      toggleDetails={props.toggleDetails}
+      edit={props.edit}/>
     </div>
   );
 };

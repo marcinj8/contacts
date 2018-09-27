@@ -16,7 +16,8 @@ const profiles = props => {
         city={profile.city}
         street={profile.street}
         details={profile.details}
-        clicked={() => props.details(i)}/>
+        toggleDetails={() => props.toggleDetails(i)}
+        edit={() => props.edit(i)}/>
     );
   });
   return (
