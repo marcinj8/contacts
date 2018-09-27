@@ -11,7 +11,7 @@ const navigation = props => {
       <div className='navigation__logoContainer'>
         <Logo />
       </div>
-      <div>
+      <div className='navigation__itemsContainer'>
         <NavigationItem clicked={props.navitateTo}>Add contact</NavigationItem >
         <NavigationItem clicked={props.navitateTo}>Contacts</NavigationItem >
         <NavigationItem clicked={props.navitateTo}>About</NavigationItem >

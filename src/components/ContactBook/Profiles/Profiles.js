@@ -1,4 +1,5 @@
 import React from 'react';
+import Aux from 'react-aux';
 
 import Profile from './Profile/Profile';
 
@@ -16,13 +17,13 @@ const profiles = props => {
         street={profile.street}
         details={profile.details}
         clicked={() => props.details(i)}/>
-    )
-  })
+    );
+  });
   return (
-    <div>
+    <Aux>
       {profiles}
-    </div>
-  )
-}
+    </Aux>
+  );
+};
 
 export default profiles;

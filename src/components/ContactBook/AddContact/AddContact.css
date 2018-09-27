@@ -69,7 +69,7 @@
   margin: 20px auto 0 auto;
 }
 
-@media(min-width: 450px) {
+@media(min-width: 630px) {
   .addContact__block {
     width: 500px;
     padding: 30px;

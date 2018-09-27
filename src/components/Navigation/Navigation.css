@@ -1,11 +1,39 @@
 .navigation {
-  height: 80px;
+  height: 150px;
   width: 100%;
-  border-bottom: 1px solid blueviolet;
+  background: rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(153, 43, 255);
   display: flex;
-  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .navigation__logoContainer {
-  width: 70%;
+  width: 40%;
+  padding: 60px 0 0 0;
+}
+
+.navigation__itemsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  float: right;
+}
+
+@media(min-width: 590px) {
+  .navigation {
+    height: 80px;
+    display: flex;
+  justify-content: flex-end;
+  }
+
+  .navigation__logoContainer {
+    padding: 25px 0 0 0;
+    width: 40%;
+  }
+
+  .navigation__itemsContainer {
+    display: flex;
+    flex-direction: row;
+    max-width: 400px;
+  }
 }
