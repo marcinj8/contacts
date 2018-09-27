@@ -19,26 +19,35 @@
 
 .profileCard__button,
 .profileCard__button--delete {
+  outline: none;
+  margin: 0 3px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid rgb(145, 48, 236);
+  transition: all .2s linear;
+}
+.profileCard__button:hover {
   margin: 0 3px;
   border-radius: 2px;
-  border: 1px solid blueviolet;
+  background: rgb(149, 149, 149);
+  border: 1px solid rgb(132, 0, 255);
 }
 
 .profileCard__button--delete {
-  margin: 0 3px;
+  padding: 2px;
+  width: 30px;
   background: rgb(255, 125, 125);
   border: 1px solid rgb(245, 92, 92);
+  transition: all .2s linear;
 }
 
 .profileCard__button--delete:hover {
-  margin: 0 3px;
-  background: rgb(255, 94, 94);
+  background: rgb(255, 58, 58);
   border: 1px solid rgb(255, 22, 22);
+  transform: rotate(90deg)
 }
 
-.profileCard__button--delete:active,
-.profileCard__button--delete:focus {
-  margin: 0 3px;
-  background: rgb(255, 125, 125);
-  border: 1px solid rgb(245, 92, 92);
+.profileCard__button--delete:active{
+  background: rgb(255, 0, 0);
+  border: 1px solid rgb(255, 0, 0);
 }
