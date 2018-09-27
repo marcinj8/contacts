@@ -8,10 +8,9 @@
   margin: 25px auto;
   border-radius: 2px;
   box-shadow: 3px 3px 5px;
-  transition: all .3s ease;
 }
 
-.active {
+.addContact__block--active {
   animation: showBlock 1s linear;
 }
 
@@ -24,8 +23,18 @@
   }
 }
 
-.noActive {
+.addContact__block--noActive {
+  animation: hideBlock 1s linear;
   display: none
+}
+
+@keyframes hideBlock {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .addContact__title{
@@ -62,7 +71,7 @@
 
 @media(min-width: 450px) {
   .addContact__block {
-    width: 300px;
+    width: 500px;
     padding: 30px;
   }
 }

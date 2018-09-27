@@ -38,8 +38,11 @@ class Layout extends Component {
       street: 'Gorska',
       details: false
     }],
-    addContact: true,
-    concactBook: true
+    navigation: {
+      addContact: false,
+      concactBook: true,
+      about: false
+    }
   };
 
   addContactHandler = (newConact) => {
@@ -60,16 +63,47 @@ class Layout extends Component {
     });
   }
 
+  setActiv = openView => {
+    const navigation = this.state.navigation;
+    for (let key in navigation) {
+      navigation[key] = false;
+    };
+    navigation[openView] = true;
+    this.setState({
+      navigation: navigation
+    })
+  }
+
+  navigationHandler = direction => {
+    let openView = '';
+    switch (direction) {
+      case 'Add contact':
+        openView = 'addContact';
+        break
+      case 'Contacts':
+        openView = 'concactBook';
+        break
+      case 'About':
+        openView = 'about';
+        break
+      default:
+        openView = 'concactBook';
+        break
+    }
+    this.setActiv(openView);
+  }
+
   render() {
     return (
       <div>
-        <Navigation />
+        <Navigation
+          navitateTo={this.navigationHandler} />
         <AddContact
-          show={this.state.addContact}
+          show={this.state.navigation.addContact}
           values={this.state.newContact}
           clicked={this.addContactHandler} />
         <ContactBook
-          show={this.state.concactBook}
+          show={this.state.navigation.concactBook}
           contacts={this.state.contacts}
           details={this.showDetails} />
       </div>

@@ -33,9 +33,9 @@ class addContact extends Component {
   render() {
     let style = ['addContact__block']
     if (this.props.show) {
-      style.push('active')
+      style.push('addContact__block--active')
     } else {
-      style.push('noActive')
+      style.push('addContact__block--noActive')
     }
     return (
       <div className={style.join(' ')}>

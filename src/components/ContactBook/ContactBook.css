@@ -1,0 +1,47 @@
+.contactBook {
+  background: rgb(207, 207, 207);
+  width: 70%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 25px auto;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px;
+}
+
+.contactBook__active {
+  animation: showBlock 1s linear;
+}
+
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.contactBook__noActive {
+  animation: hideBlock 1s linear;
+  display: none
+}
+
+@keyframes hideBlock {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media(min-width: 450px) {
+  .contactBook {
+    width: 500px;
+    padding: 30px;
+  }
+}

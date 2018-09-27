@@ -12,9 +12,9 @@ const navigation = props => {
         <Logo />
       </div>
       <div>
-        <NavigationItem>Add contact</NavigationItem >
-        <NavigationItem>Contacts</NavigationItem >
-        <NavigationItem>About</NavigationItem >
+        <NavigationItem clicked={props.navitateTo}>Add contact</NavigationItem >
+        <NavigationItem clicked={props.navitateTo}>Contacts</NavigationItem >
+        <NavigationItem clicked={props.navitateTo}>About</NavigationItem >
       </div>
     </div>
   );
