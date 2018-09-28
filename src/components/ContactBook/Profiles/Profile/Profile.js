@@ -26,7 +26,7 @@ const profile = props => {
             create
           </i>
         </button>
-        <button className='profileCard__button--delete'>
+        <button className='profileCard__button--delete' onClick={props.delete}>
           <i className="material-icons">
             clear
         </i>

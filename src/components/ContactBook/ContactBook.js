@@ -17,7 +17,8 @@ const contactBook = props => {
       <Profiles 
       contacts={props.contacts}
       toggleDetails={props.toggleDetails}
-      edit={props.edit}/>
+      edit={props.edit}
+      delete={props.delete}/>
     </div>
   );
 };

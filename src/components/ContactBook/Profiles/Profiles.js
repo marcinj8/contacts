@@ -9,7 +9,7 @@ const profiles = props => {
   props.contacts.map((profile, i) => {
     return profiles.push(
       <Profile
-        key={profile.name + '/' + i}
+        key={profile.key}
         name={profile.name}
         mail={profile.mail}
         phone={profile.phone}
@@ -17,7 +17,8 @@ const profiles = props => {
         street={profile.street}
         details={profile.details}
         toggleDetails={() => props.toggleDetails(i)}
-        edit={() => props.edit(i)}/>
+        edit={() => props.edit(i)}
+        delete={() => props.delete(profile.key)}/>
     );
   });
   return (

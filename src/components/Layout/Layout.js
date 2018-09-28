@@ -10,41 +10,50 @@ class Layout extends Component {
     contacts: [],
     navigation: {
       addContact: false,
-      concactBook: true,
+      contactBook: true,
       about: false
     }
   };
 
   componentDidMount() {
+    this.getContactsFromDatabase();
+  }
+
+  getContactsFromDatabase = () => {
     axios.get('https://contactmenager.firebaseio.com/contacts.json')
-    .then(res => this.setContacts(res.data))
-    .catch(err => console.log(err))
+      .then(res => this.setContacts(res.data))
+      .catch(err => console.log(err));
   }
 
   setContacts = response => {
     const contacts = [];
     for (let key in response) {
-      contacts.push(response[key])
+      contacts.push({
+        ...response[key],
+        key: key
+      });
     }
     this.setState({
       contacts: contacts
-    })
+    });
   }
 
   addContactAxios = newContactData => {
     axios.post('https://contactmenager.firebaseio.com/contacts.json', newContactData)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+      .then(() => this.getContactsFromDatabase())
+      .catch(err => console.log(err));
   }
 
   addContactHandler = (newContact) => {
-    const updateContacts = this.state.contacts;
-    this.addContactAxios(newContact)
-    updateContacts.push(newContact);
-    this.setState({
-      contacts: updateContacts
-    });
-    this.setActiv('concactBook');
+    this.addContactAxios(newContact);
+    this.setActiv('contactBook');
+  }
+
+  deleteContact = id => {
+    const dataId = id;
+    axios.delete(`https://contactmenager.firebaseio.com/contacts/${dataId}.json`)
+      .then(() => this.getContactsFromDatabase())
+      .catch(err => console.log(err));
   }
 
   showDetails = id => {
@@ -64,7 +73,7 @@ class Layout extends Component {
     navigation[openView] = true;
     this.setState({
       navigation: navigation
-    })
+    });
   }
 
   navigationHandler = direction => {
@@ -72,27 +81,42 @@ class Layout extends Component {
     switch (direction) {
       case 'Add contact':
         openView = 'addContact';
-        break
+        break;
       case 'Contacts':
-        openView = 'concactBook';
-        break
+        openView = 'contactBook';
+        break;
       case 'About':
         openView = 'about';
-        break
+        break;
       default:
         openView = 'concactBook';
-        break
+        break;
     }
     this.setActiv(openView);
   }
 
   render() {
+    console.log(this.state.contacts);
     let addContact = null;
     if (this.state.navigation.addContact) {
-      addContact = <AddContact
-        show={this.state.navigation.addContact}
-        values={this.state.newContact}
-        clicked={this.addContactHandler} />
+      addContact = (
+        <AddContact
+          show={this.state.navigation.addContact}
+          values={this.state.newContact}
+          clicked={this.addContactHandler} />
+      );
+    }
+
+    let contactBook = null;
+    if (this.state.navigation.contactBook) {
+      contactBook = (
+        <ContactBook
+          show={this.state.navigation.contactBook}
+          contacts={this.state.contacts}
+          toggleDetails={this.showDetails}
+          edit={this.showEditor}
+          delete={this.deleteContact} />
+      );
     }
 
     return (
@@ -100,11 +124,7 @@ class Layout extends Component {
         <Navigation
           navitateTo={this.navigationHandler} />
         {addContact}
-        <ContactBook
-          show={this.state.navigation.concactBook}
-          contacts={this.state.contacts}
-          toggleDetails={this.showDetails}
-          edit={this.showEditor} />
+        {contactBook}
       </div>
     );
   }
