@@ -25,15 +25,13 @@ class ContactEditor extends Component {
   }
 
   editContactHandler = () => {
-    axios.put(`https://contactmenager.firebaseio.com/contacts/${this.props.id}.json`, {
-      name: this.state.name,
-      mail: this.state.mail,
-      phone: this.state.phone,
-      city: this.state.city,
-      street: this.state.street,
-    })
-      .then(res => console.log(res))
-      // .then(() => this.getContactsFromDatabase())
+    const updatedContact = {
+      ...this.state.contact
+    }
+
+    axios.put(`https://contactmenager.firebaseio.com/contacts/${this.props.id}.json`, updatedContact)
+      .then(() => this.props.toggleEditor())
+      // .then(() => this.getContactFromDatabase())
       .catch(err => console.log(err));
   }
 
@@ -59,7 +57,6 @@ class ContactEditor extends Component {
           city={this.state.contact.city}
           street={this.state.contact.street}
           changeProperty={this.changePropertyHandler} />
-
       );
     }
     return (
