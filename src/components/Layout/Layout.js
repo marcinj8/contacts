@@ -19,12 +19,6 @@ class Layout extends Component {
     this.getContactsFromDatabase();
   }
 
-  getContactsFromDatabase = () => {
-    axios.get('https://contactmenager.firebaseio.com/contacts.json')
-      .then(res => this.setContacts(res.data))
-      .catch(err => console.log(err));
-  }
-
   setContacts = response => {
     const contacts = [];
     for (let key in response) {
@@ -38,6 +32,12 @@ class Layout extends Component {
     });
   }
 
+  getContactsFromDatabase = () => {
+    axios.get('https://contactmenager.firebaseio.com/contacts.json')
+      .then(res => this.setContacts(res.data))
+      .catch(err => console.log(err));
+  }
+
   addContactAxios = newContactData => {
     axios.post('https://contactmenager.firebaseio.com/contacts.json', newContactData)
       .then(() => this.getContactsFromDatabase())
@@ -49,9 +49,8 @@ class Layout extends Component {
     this.setActiv('contactBook');
   }
 
-  deleteContact = id => {
-    const dataId = id;
-    axios.delete(`https://contactmenager.firebaseio.com/contacts/${dataId}.json`)
+  deleteContact = contactId => {
+    axios.delete(`https://contactmenager.firebaseio.com/contacts/${contactId}.json`)
       .then(() => this.getContactsFromDatabase())
       .catch(err => console.log(err));
   }
@@ -60,6 +59,17 @@ class Layout extends Component {
     const contacts = this.state.contacts;
     const contact = contacts[id];
     contact.details = !contact.details;
+    contact.editor = false;
+    this.setState({
+      contacts: contacts
+    });
+  }
+
+  showEditor = id => {
+    const contacts = this.state.contacts;
+    const contact = contacts[id];
+    contact.details = false;
+    contact.editor = !contact.editor;
     this.setState({
       contacts: contacts
     });
@@ -114,7 +124,7 @@ class Layout extends Component {
           show={this.state.navigation.contactBook}
           contacts={this.state.contacts}
           toggleDetails={this.showDetails}
-          edit={this.showEditor}
+          toggleEditor={this.showEditor}
           delete={this.deleteContact} />
       );
     }

@@ -10,14 +10,17 @@ const profiles = props => {
     return profiles.push(
       <Profile
         key={profile.key}
+        id={profile.key}
         name={profile.name}
         mail={profile.mail}
         phone={profile.phone}
         city={profile.city}
         street={profile.street}
         details={profile.details}
+        editor={profile.editor}
         toggleDetails={() => props.toggleDetails(i)}
-        edit={() => props.edit(i)}
+        toggleEditor={() => props.toggleEditor(i)}
+        edit={() => props.edit(profile.key)}
         delete={() => props.delete(profile.key)}/>
     );
   });

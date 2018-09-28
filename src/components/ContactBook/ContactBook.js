@@ -6,7 +6,7 @@ import './ContactBook.css';
 
 const contactBook = props => {
   let style = ['contactBook'];
-  if(props.show) {
+  if (props.show) {
     style.push('contactBook__active');
   } else {
     style.push('contactBook__noActive');
@@ -14,11 +14,12 @@ const contactBook = props => {
 
   return (
     <div className={style.join(' ')}>
-      <Profiles 
-      contacts={props.contacts}
-      toggleDetails={props.toggleDetails}
-      edit={props.edit}
-      delete={props.delete}/>
+      <Profiles
+        contacts={props.contacts}
+        toggleDetails={props.toggleDetails}
+        toggleEditor={props.toggleEditor}
+        edit={props.edit}
+        delete={props.delete} />
     </div>
   );
 };

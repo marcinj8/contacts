@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Details from './Details/Details';
+import Editor from '../../ContactEditor/ContactEditor';
 
 import './Profile.css';
 
@@ -16,12 +17,19 @@ const profile = props => {
         street={props.street} />
     )
   }
+
+  let editor = null;
+  if (props.editor) {
+    editor = <Editor
+      id={props.id} />
+  }
+
   return (
     <div className='profileCard'>
       <div className='profileCard__flex'>
         <div>{props.name}</div>
         <button className='profileCard__button' onClick={props.toggleDetails}>Details</button>
-        <button className='profileCard__button' onClick={props.edit}>
+        <button className='profileCard__button' onClick={props.toggleEditor}>
           <i className="material-icons">
             create
           </i>
@@ -33,6 +41,7 @@ const profile = props => {
         </button>
       </div>
       {details}
+      {editor}
     </div>
   )
 }
