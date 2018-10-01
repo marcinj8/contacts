@@ -30,8 +30,8 @@ const profile = props => {
     <div className='profileCard'>
       <div className='profileCard__flex'>
         <div>{props.name}</div>
-        <button className='profileCard__button' onClick={props.toggleDetails}>Details</button>
-        <button className='profileCard__button' onClick={props.toggleEditor}>
+        <button className='profileCard__button' onClick={() => props.toggleDetails('details')}>Details</button>
+        <button className='profileCard__button' onClick={()  => props.toggleEditor('editor')}>
           <i className="material-icons">
             create
           </i>

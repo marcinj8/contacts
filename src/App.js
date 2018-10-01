@@ -9,7 +9,12 @@ class App extends Component {
   state = {
     contacts: [],
     refreshContacts: false,
-  }
+    navigation: {
+      addContact: false,
+      contactBook: true,
+      about: false
+    }
+  };
 
   componentDidMount() {
     this.getContactsFromDatabase();
@@ -20,7 +25,7 @@ class App extends Component {
       this.getContactsFromDatabase();
       this.setState({
         refreshContacts: false
-      })
+      });
     }
   }
 
@@ -46,7 +51,7 @@ class App extends Component {
   refreshContactsHandler = () => {
     this.setState({
       refreshContacts: true
-    })
+    });
   }
 
   addContactAxios = newContactData => {
@@ -57,7 +62,7 @@ class App extends Component {
 
   addContactHandler = (newContact) => {
     this.addContactAxios(newContact);
-    this.setActiv('contactBook');
+    this.setActivHandler('contactBook');
   }
 
   deleteContact = contactId => {
@@ -75,7 +80,18 @@ class App extends Component {
       contacts: contacts
     });
   }
-  // merge both finctions
+  // merge both functions
+
+  showEditor = (id) => {
+    const contacts = this.state.contacts;
+    const contact = contacts[id];
+    contact.details = false;
+    contact.editor = !contact.editor;
+    this.setState({
+      contacts: contacts
+    });
+  }
+
   showEditor = id => {
     const contacts = this.state.contacts;
     const contact = contacts[id];
@@ -86,11 +102,42 @@ class App extends Component {
     });
   }
 
-  render() {
+  setActivHandler = openView => {
+    const navigation = this.state.navigation;
+    for (let key in navigation) {
+      navigation[key] = false;
+    };
+    navigation[openView] = true;
+    this.setState({
+      navigation: navigation
+    });
+  }
 
+  navigationHandler = direction => {
+    let openView = '';
+    switch (direction) {
+      case 'Add contact':
+        openView = 'addContact';
+        break;
+      case 'Contacts':
+        openView = 'contactBook';
+        break;
+      case 'About':
+        openView = 'about';
+        break;
+      default:
+        openView = 'concactBook';
+        break;
+    }
+    this.setActivHandler(openView);
+  }
+
+  render() {
     return (
       <div className="App">
         <Layout
+          navitateTo={this.navigationHandler}
+          navigation={this.state.navigation}
           addContact={this.addContactHandler}
           contacts={this.state.contacts}
           refreshContacts={this.refreshContactsHandler}
