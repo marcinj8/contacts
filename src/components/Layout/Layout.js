@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import Navigation from '../Navigation/Navigation';
 import ContactBook from '../ContactBook/ContactBook';
@@ -7,89 +6,14 @@ import AddContact from '../ContactBook/AddContact/AddContact';
 
 class Layout extends Component {
   state = {
-    contacts: [],
-    refreshContacts: false,
+    // contacts: [],
+    // refreshContacts: false,
     navigation: {
       addContact: false,
       contactBook: true,
       about: false
     }
   };
-
-  componentDidMount() {
-    this.getContactsFromDatabase();
-  }
-
-  componentDidUpdate() {
-    if (this.state.refreshContacts) {
-      this.getContactsFromDatabase();
-      this.setState({
-        refreshContacts: false
-      })
-    }
-  }
-
-  setContacts = response => {
-    const contacts = [];
-    for (let key in response) {
-      contacts.push({
-        ...response[key],
-        key: key
-      });
-    }
-    this.setState({
-      contacts: contacts
-    });
-  }
-
-  getContactsFromDatabase = () => {
-    axios.get('https://contactmenager.firebaseio.com/contacts.json')
-      .then(res => this.setContacts(res.data))
-      .catch(err => console.log(err));
-  }
-
-  refreshContactsHandler = () => {
-    this.setState({
-      refreshContacts: true
-    })
-  }
-
-  addContactAxios = newContactData => {
-    axios.post('https://contactmenager.firebaseio.com/contacts.json', newContactData)
-      .then(() => this.getContactsFromDatabase())
-      .catch(err => console.log(err));
-  }
-
-  addContactHandler = (newContact) => {
-    this.addContactAxios(newContact);
-    this.setActiv('contactBook');
-  }
-
-  deleteContact = contactId => {
-    axios.delete(`https://contactmenager.firebaseio.com/contacts/${contactId}.json`)
-      .then(() => this.getContactsFromDatabase())
-      .catch(err => console.log(err));
-  }
-
-  showDetails = id => {
-    const contacts = this.state.contacts;
-    const contact = contacts[id];
-    contact.details = !contact.details;
-    contact.editor = false;
-    this.setState({
-      contacts: contacts
-    });
-  }
-
-  showEditor = id => {
-    const contacts = this.state.contacts;
-    const contact = contacts[id];
-    contact.details = false;
-    contact.editor = !contact.editor;
-    this.setState({
-      contacts: contacts
-    });
-  }
 
   setActiv = openView => {
     const navigation = this.state.navigation;
@@ -122,17 +46,16 @@ class Layout extends Component {
   }
 
   render() {
-    if(this.state.refreshContacts){
+    if (this.props.refreshContacts) {
       console.log('refreshed')
     }
-    console.log(this.state.contacts, 'render');
     let addContact = null;
     if (this.state.navigation.addContact) {
       addContact = (
         <AddContact
           show={this.state.navigation.addContact}
           values={this.state.newContact}
-          clicked={this.addContactHandler} />
+          clicked={this.addContact} />
       );
     }
 
@@ -141,11 +64,11 @@ class Layout extends Component {
       contactBook = (
         <ContactBook
           show={this.state.navigation.contactBook}
-          refreshContacts={this.refreshContactsHandler}
-          contacts={this.state.contacts}
-          toggleDetails={this.showDetails}
-          toggleEditor={this.showEditor}
-          delete={this.deleteContact} />
+          refreshContacts={this.props.refreshContacts}
+          contacts={this.props.contacts}
+          toggleDetails={this.props.toggleDetails}
+          toggleEditor={this.props.toggleEditor}
+          delete={this.props.deleteContact} />
       );
     }
 
