@@ -18,6 +18,7 @@ const profiles = props => {
         street={profile.street}
         details={profile.details}
         editor={profile.editor}
+        refreshContacts={props.refreshContacts}
         toggleDetails={() => props.toggleDetails(i)}
         toggleEditor={() => props.toggleEditor(i)}
         edit={() => props.edit(profile.key)}

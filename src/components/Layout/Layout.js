@@ -8,6 +8,7 @@ import AddContact from '../ContactBook/AddContact/AddContact';
 class Layout extends Component {
   state = {
     contacts: [],
+    refreshContacts: false,
     navigation: {
       addContact: false,
       contactBook: true,
@@ -17,6 +18,15 @@ class Layout extends Component {
 
   componentDidMount() {
     this.getContactsFromDatabase();
+  }
+
+  componentDidUpdate() {
+    if (this.state.refreshContacts) {
+      this.getContactsFromDatabase();
+      this.setState({
+        refreshContacts: false
+      })
+    }
   }
 
   setContacts = response => {
@@ -36,6 +46,12 @@ class Layout extends Component {
     axios.get('https://contactmenager.firebaseio.com/contacts.json')
       .then(res => this.setContacts(res.data))
       .catch(err => console.log(err));
+  }
+
+  refreshContactsHandler = () => {
+    this.setState({
+      refreshContacts: true
+    })
   }
 
   addContactAxios = newContactData => {
@@ -106,7 +122,10 @@ class Layout extends Component {
   }
 
   render() {
-    console.log(this.state.contacts);
+    if(this.state.refreshContacts){
+      console.log('refreshed')
+    }
+    console.log(this.state.contacts, 'render');
     let addContact = null;
     if (this.state.navigation.addContact) {
       addContact = (
@@ -122,6 +141,7 @@ class Layout extends Component {
       contactBook = (
         <ContactBook
           show={this.state.navigation.contactBook}
+          refreshContacts={this.refreshContactsHandler}
           contacts={this.state.contacts}
           toggleDetails={this.showDetails}
           toggleEditor={this.showEditor}

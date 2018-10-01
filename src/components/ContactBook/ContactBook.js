@@ -16,6 +16,7 @@ const contactBook = props => {
     <div className={style.join(' ')}>
       <Profiles
         contacts={props.contacts}
+        refreshContacts={props.refreshContacts}
         toggleDetails={props.toggleDetails}
         toggleEditor={props.toggleEditor}
         edit={props.edit}

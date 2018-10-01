@@ -30,8 +30,10 @@ class ContactEditor extends Component {
     }
 
     axios.put(`https://contactmenager.firebaseio.com/contacts/${this.props.id}.json`, updatedContact)
-      .then(() => this.props.toggleEditor())
-      // .then(() => this.getContactFromDatabase())
+      .then(() => {
+        this.props.refreshContacts()
+        this.props.toggleEditor()
+      })
       .catch(err => console.log(err));
   }
 

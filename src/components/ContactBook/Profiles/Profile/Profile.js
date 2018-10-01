@@ -14,14 +14,15 @@ const profile = props => {
         mail={props.mail}
         phone={props.phone}
         city={props.city}
-        street={props.street}/>
+        street={props.street} />
     )
   }
 
   let editor = null;
   if (props.editor) {
     editor = <Editor
-      id={props.id} 
+      refreshContacts={props.refreshContacts}
+      id={props.id}
       toggleEditor={props.toggleEditor} />
   }
 
