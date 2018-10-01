@@ -1,0 +1,5 @@
+.contact__editor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

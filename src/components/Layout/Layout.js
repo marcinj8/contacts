@@ -32,6 +32,7 @@ class Layout extends Component {
     return (
       <div>
         <Navigation
+          navigation={this.props.navigation}
           navitateTo={this.props.navitateTo} />
         {addContact}
         {contactBook}

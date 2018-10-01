@@ -1,0 +1,16 @@
+.UI__block {
+  margin: 5px auto;
+  min-width: 200px;
+  width: 45%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.UI__label {
+  box-sizing: border-box;
+  width: 40%;
+}
+
+.UI__input {
+  width: 55%;
+}

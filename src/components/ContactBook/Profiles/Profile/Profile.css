@@ -4,13 +4,21 @@
   background: white;
   box-shadow: 4px 4px 10px rgb(49, 49, 49);
   margin: 0 auto;
-  padding: 10px;
   box-sizing: border-box;
 }
 
+.profileCard:hover {
+  background: rgba(255, 255, 255, 0.756);
+}
+
 .profileCard__flex {
+  padding: 10px;
   display: flex;
   flex-wrap: wrap;
+}
+
+.profileCard__name {
+  width: 40%;
 }
 
 .profileCard__flex div {
@@ -18,36 +26,59 @@
 }
 
 .profileCard__button,
+.profileCard__button--edit,
 .profileCard__button--delete {
   outline: none;
   margin: 0 3px;
+  background: transparent;
   height: 30px;
   border-radius: 2px;
-  border: 1px solid rgb(145, 48, 236);
+  border: 1px solid transparent;
   transition: all .2s linear;
+  cursor: pointer;
 }
+
 .profileCard__button:hover {
-  margin: 0 3px;
-  border-radius: 2px;
-  background: rgb(149, 149, 149);
+  background: rgb(209, 209, 209);
+  border: 1px solid rgb(220, 182, 255);
+}
+
+.profileCard__button:active {
+  background: rgb(199, 199, 199);
   border: 1px solid rgb(132, 0, 255);
+}
+
+.profileCard__button--edit:hover {
+  color: rgb(155, 47, 255);
+  transform: rotate(-25deg);
 }
 
 .profileCard__button--delete {
   padding: 2px;
   width: 30px;
-  background: rgb(255, 125, 125);
-  border: 1px solid rgb(245, 92, 92);
+  background: transparent;
+  border: 1px solid transparent;
   transition: all .2s linear;
 }
 
 .profileCard__button--delete:hover {
-  background: rgb(255, 58, 58);
-  border: 1px solid rgb(255, 22, 22);
+  background: rgb(250, 94, 94);
+  border: 1px solid rgb(255, 96, 96);
   transform: rotate(90deg)
 }
 
-.profileCard__button--delete:active{
+.profileCard__button--edit:active {
+  color: rgb(94, 0, 182);
+  transform: rotate(-45deg);
+}
+
+.profileCard__button--delete:active {
   background: rgb(255, 0, 0);
   border: 1px solid rgb(255, 0, 0);
+}
+
+@media(min-width:500px) {
+  .profileCard__name {
+    width: 60%;
+  }
 }

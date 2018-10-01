@@ -81,7 +81,6 @@ class App extends Component {
     });
   }
   // merge both functions
-
   showEditor = (id) => {
     const contacts = this.state.contacts;
     const contact = contacts[id];

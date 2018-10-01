@@ -1,11 +1,42 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Aux from 'react-aux';
 
 import Inputs from '../UI/Inputs';
 
+import './ContactEditor.css';
+
 class ContactEditor extends Component {
   state = {
-    contact: null
+    editorFields: {
+      name: {
+        label: "Name",
+        type: "text",
+        placeholder: 'name'
+      },
+      mail: {
+        label: "Mail",
+        type: "mail",
+        placeholder: 'mail'
+      },
+      phone: {
+        label: "Phone",
+        type: "tel",
+        placeholder: 'phone'
+      },
+      city: {
+        label: "City",
+        type: "text",
+        placeholder: 'city'
+      },
+      street: {
+        label: "Street",
+        type: "text",
+        placeholder: 'street'
+      },
+    },
+    contact: null,
+    error: false
   };
 
   componentWillMount() {
@@ -14,27 +45,27 @@ class ContactEditor extends Component {
 
   setContact = response => {
     this.setState({
-      contact: response
+      contact: response,
+      error: false
     });
   }
 
   getContactFromDatabase = () => {
     axios.get(`https://contactmenager.firebaseio.com/contacts/${this.props.id}.json`)
       .then(res => this.setContact(res.data))
-      .catch(err => console.log(err));
+      .catch(error => this.setState({ error: error.message }));
   }
 
   editContactHandler = () => {
     const updatedContact = {
       ...this.state.contact
     }
-
     axios.put(`https://contactmenager.firebaseio.com/contacts/${this.props.id}.json`, updatedContact)
       .then(() => {
         this.props.refreshContacts()
         this.props.toggleEditor()
       })
-      .catch(err => console.log(err));
+      .catch(error => this.setState({ error: error.message }));
   }
 
   changePropertyHandler = event => {
@@ -44,29 +75,44 @@ class ContactEditor extends Component {
     this.setState({
       contact: updatedContact
     })
-    console.log(this.state.contact)
   }
 
   render() {
     let formEditor = <h4>Loading...</h4>;
+    let mapEditorFirldsToArr = [];
 
-    if (this.state.contact) {
+    if (this.state.error) {
+      formEditor = <h5>{this.state.error}</h5>
+    } else if (this.state.contact) {
+      for (let key in this.state.editorFields) {
+        mapEditorFirldsToArr.push({
+          key: key,
+          name: key,
+          value: this.state.contact[key],
+          configuration: { ...this.state.editorFields[key] }
+        })
+      }
       formEditor = (
-        <Inputs
-          name={this.state.contact.name}
-          mail={this.state.contact.mail}
-          phone={this.state.contact.phone}
-          city={this.state.contact.city}
-          street={this.state.contact.street}
-          changeProperty={this.changePropertyHandler} />
+        mapEditorFirldsToArr.map(input => {
+          return <Inputs
+            key={input.key}
+            name={input.key}
+            label={input.configuration.label}
+            type={input.configuration.type}
+            value={input.value}
+            placeholder={input.configuration.placeholder}
+            changeProperty={this.changePropertyHandler} />
+        })
       );
     }
     return (
-      <div>
-        {formEditor}
+      <Aux>
+        <div className='contact__editor'>
+          {formEditor}
+        </div>
         <button onClick={this.editContactHandler}>Confirm</button>
         <button>Cancel</button>
-      </div>
+      </Aux>
     );
   }
 }

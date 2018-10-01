@@ -11,6 +11,7 @@ const profile = props => {
   if (props.details) {
     details = (
       <Details
+        show={props.details}
         mail={props.mail}
         phone={props.phone}
         city={props.city}
@@ -20,18 +21,21 @@ const profile = props => {
 
   let editor = null;
   if (props.editor) {
-    editor = <Editor
-      refreshContacts={props.refreshContacts}
-      id={props.id}
-      toggleEditor={props.toggleEditor} />
+    editor = (
+      <Editor
+        show={props.editor}
+        refreshContacts={props.refreshContacts}
+        id={props.id}
+        toggleEditor={props.toggleEditor} />
+    )
   }
 
   return (
     <div className='profileCard'>
       <div className='profileCard__flex'>
-        <div>{props.name}</div>
+        <div className='profileCard__name'>{props.name}</div>
         <button className='profileCard__button' onClick={() => props.toggleDetails('details')}>Details</button>
-        <button className='profileCard__button' onClick={()  => props.toggleEditor('editor')}>
+        <button className='profileCard__button--edit' onClick={() => props.toggleEditor('editor')}>
           <i className="material-icons">
             create
           </i>

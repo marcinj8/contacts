@@ -1,7 +1,9 @@
 .detail__flex{
   display: flex;
+  background: rgba(240, 240, 240, 0.75);
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 100%;
 }
 
 .detail__item {
