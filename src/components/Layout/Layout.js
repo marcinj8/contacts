@@ -3,8 +3,23 @@ import React, { Component } from 'react';
 import Navigation from '../Navigation/Navigation';
 import ContactBook from '../ContactBook/ContactBook';
 import AddContact from '../ContactBook/AddContact/AddContact';
+import Modal from '../../UI/Modal/Modal';
 
 class Layout extends Component {
+  state = {
+    showModal: false,
+    contactID: '',
+    contackName: ''
+  }
+
+  toggleModalHandler = (id, name) => {
+    this.setState({
+      showModal: !this.state.showModal,
+      contactID: id,
+      contackName: name
+    })
+  }
+
   render() {
     let addContact = null;
     if (this.props.navigation.addContact) {
@@ -25,8 +40,19 @@ class Layout extends Component {
           contacts={this.props.contacts}
           toggleDetails={this.props.toggleDetails}
           toggleEditor={this.props.toggleEditor}
-          delete={this.props.delete} />
+          toggleModal={this.toggleModalHandler} />
       );
+    }
+    let modal = null;
+    if (this.state.showModal) {
+      modal = (
+        <Modal
+          delete={() => {
+            this.props.delete(this.state.contactID);
+            this.toggleModalHandler()
+          }}
+          toggleModal={this.toggleModalHandler}> You want to delete <b>{this.state.contackName}</b>. Please confirm! </Modal>
+      )
     }
 
     return (
@@ -36,6 +62,7 @@ class Layout extends Component {
           navitateTo={this.props.navitateTo} />
         {addContact}
         {contactBook}
+        {modal}
       </div>
     );
   }

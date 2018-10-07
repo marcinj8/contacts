@@ -1,0 +1,39 @@
+.modal {
+  position: fixed;
+  width: 70%;
+  top: 30%;
+  left: 15%;
+  padding: 20px 15px;
+  margin: auto;
+  background: gray;
+  z-index: 200;
+  box-shadow: 10px 15px 10px black;
+}
+
+.modal__content{
+  padding: 10px;
+}
+
+.modal__button,
+.modal__button--delete,
+.modal__button--cancel {
+  height: 30px;
+  margin: 10px;
+  outline: none;
+  border: 1px solid gray;
+}
+
+.modal__button--delete {
+  border: 1px solid rgb(255, 69, 69);
+  background: rgb(255, 123, 123);
+}
+.modal__button--delete:hover {
+  background: rgb(255, 96, 96);
+}
+.modal__button--cancel {
+  border: 1px solid rgb(95, 95, 95);
+  background: rgb(212, 212, 212);
+}
+.modal__button--cancel:hover {
+  background: rgb(160, 160, 160);
+}

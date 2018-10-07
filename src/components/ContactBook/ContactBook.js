@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Profiles from './Profiles/Profiles';
+import ManageContactBar from '../../UI/ManageContactBar/ManageContactBar';
 
 import './ContactBook.css';
 
@@ -14,13 +15,14 @@ const contactBook = props => {
 
   return (
     <div className={style.join(' ')}>
+      <ManageContactBar />
       <Profiles
         contacts={props.contacts}
         refreshContacts={props.refreshContacts}
         toggleDetails={props.toggleDetails}
         toggleEditor={props.toggleEditor}
         edit={props.edit}
-        delete={props.delete} />
+        toggleModal={props.toggleModal} />
     </div>
   );
 };

@@ -72,7 +72,7 @@ class App extends Component {
   }
 
   showDetails = id => {
-    const contacts = this.state.contacts;
+    const contacts = [...this.state.contacts];
     const contact = contacts[id];
     contact.details = !contact.details;
     contact.editor = false;
@@ -82,7 +82,7 @@ class App extends Component {
   }
   // merge both functions
   showEditor = (id) => {
-    const contacts = this.state.contacts;
+    const contacts = [...this.state.contacts];
     const contact = contacts[id];
     contact.details = false;
     contact.editor = !contact.editor;
@@ -92,7 +92,7 @@ class App extends Component {
   }
 
   showEditor = id => {
-    const contacts = this.state.contacts;
+    const contacts = [...this.state.contacts];
     const contact = contacts[id];
     contact.details = false;
     contact.editor = !contact.editor;
@@ -102,7 +102,7 @@ class App extends Component {
   }
 
   setActivHandler = openView => {
-    const navigation = this.state.navigation;
+    const navigation = [...this.state.navigation];
     for (let key in navigation) {
       navigation[key] = false;
     };

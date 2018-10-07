@@ -40,7 +40,7 @@ const profile = props => {
             create
           </i>
         </button>
-        <button className='profileCard__button--delete' onClick={props.delete}>
+        <button className='profileCard__button--delete' onClick={props.toggleModal}>
           <i className="material-icons">
             clear
         </i>

@@ -22,7 +22,7 @@ const profiles = props => {
         toggleDetails={() => props.toggleDetails(i)}
         toggleEditor={() => props.toggleEditor(i)}
         edit={() => props.edit(profile.key)}
-        delete={() => props.delete(profile.key)}/>
+        toggleModal={() => props.toggleModal(profile.key, profile.name)}/>
     );
   });
   return (

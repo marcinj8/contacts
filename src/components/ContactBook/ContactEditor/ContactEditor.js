@@ -111,7 +111,7 @@ class ContactEditor extends Component {
           {formEditor}
         </div>
         <button onClick={this.editContactHandler}>Confirm</button>
-        <button>Cancel</button>
+        <button onClick={() => this.props.toggleEditor('editor')}>Cancel</button>
       </Aux>
     );
   }
