@@ -20,6 +20,7 @@ class Layout extends Component {
     })
   }
 
+
   render() {
     let addContact = null;
     if (this.props.navigation.addContact) {
@@ -40,7 +41,10 @@ class Layout extends Component {
           contacts={this.props.contacts}
           toggleDetails={this.props.toggleDetails}
           toggleEditor={this.props.toggleEditor}
-          toggleModal={this.toggleModalHandler} />
+          toggleModal={this.toggleModalHandler} 
+          sortContacts={this.props.sortContacts}
+          searchBarValue={this.props.searchBarValue}
+          searchContacts={this.props.searchContacts}/>
       );
     }
     let modal = null;

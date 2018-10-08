@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Aux from 'react-aux';
 
-import Inputs from '../UI/Inputs';
+import Inputs from '../../../UI/Inputs';
 
 import './ContactEditor.css';
 

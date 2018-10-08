@@ -13,7 +13,11 @@ class App extends Component {
       addContact: false,
       contactBook: true,
       about: false
-    }
+    },
+    reversedContacts: false,
+    contactsCopy: [],
+    isCopiedContacts: false,
+    searchBarValue: ''
   };
 
   componentDidMount() {
@@ -38,7 +42,10 @@ class App extends Component {
       });
     }
     this.setState({
-      contacts: contacts
+      contacts: contacts,
+      contactsCopy: [],
+      isCopiedContacts: false,
+      searchBarValue: ''
     });
   }
 
@@ -77,7 +84,9 @@ class App extends Component {
     contact.details = !contact.details;
     contact.editor = false;
     this.setState({
-      contacts: contacts
+      contacts: contacts,
+      contactsCopy: [],
+      isCopiedContacts: false
     });
   }
   // merge both functions
@@ -87,7 +96,7 @@ class App extends Component {
     contact.details = false;
     contact.editor = !contact.editor;
     this.setState({
-      contacts: contacts
+      contacts: contacts,
     });
   }
 
@@ -97,7 +106,7 @@ class App extends Component {
     contact.details = false;
     contact.editor = !contact.editor;
     this.setState({
-      contacts: contacts
+      contacts: contacts,
     });
   }
 
@@ -108,7 +117,7 @@ class App extends Component {
     };
     navigation[openView] = true;
     this.setState({
-      navigation: navigation
+      navigation: navigation,
     });
   }
 
@@ -131,6 +140,71 @@ class App extends Component {
     this.setActivHandler(openView);
   }
 
+  compare = (a, b) => {
+    if (a.name < b.name)
+      return -1;
+    if (a.name > b.name)
+      return 1;
+    return 0;
+  }
+
+  sortContacts = contacts => {
+    contacts.sort(this.compare);
+    this.setState({
+      contacts: contacts,
+      reversedContacts: false
+    });
+  }
+
+  reverseContacts = contacts => {
+    contacts.reverse(this.compare);
+    this.setState({
+      contacts: contacts,
+      reversedContacts: true
+    });
+  }
+
+  sortContactsHandler = ifAlphabetically => {
+    let contacts = [...this.state.contacts];
+    if (ifAlphabetically) {
+      this.sortContacts(contacts);
+    } else if (!ifAlphabetically && !this.state.reversedContacts) {
+      this.reverseContacts(contacts);
+    }
+
+  }
+
+  updateContactsList = event => {
+    const contacts = [...this.state.contactsCopy];
+    const searching = event.target.value;
+    const updatedContacts = contacts.filter(contact => {
+      return Boolean(contact.name.includes(searching));
+    });
+
+    this.setState({
+      contacts: updatedContacts
+    });
+  }
+
+  updateInputValue = event => {
+    const updatedInputValue = event.target.value;
+    this.setState({
+      searchBarValue: updatedInputValue
+    });
+  }
+
+  searchContactsHandler = event => {
+    this.updateInputValue(event)
+
+    if (!this.state.isCopiedContacts) {
+      this.setState({
+        contactsCopy: [...this.state.contacts],
+        isCopiedContacts: true
+      });
+    }
+    this.updateContactsList(event);
+  }
+
   render() {
     return (
       <div className="App">
@@ -142,7 +216,10 @@ class App extends Component {
           refreshContacts={this.refreshContactsHandler}
           toggleDetails={this.showDetails}
           toggleEditor={this.showEditor}
-          delete={this.deleteContact} />
+          delete={this.deleteContact}
+          sortContacts={this.sortContactsHandler}
+          searchBarValue={this.state.searchBarValue}
+          searchContacts={this.searchContactsHandler} />
       </div>
     );
   }

@@ -15,7 +15,10 @@ const contactBook = props => {
 
   return (
     <div className={style.join(' ')}>
-      <ManageContactBar />
+      <ManageContactBar
+        sortContacts={props.sortContacts}
+        searchBarValue={props.searchBarValue}
+        changed={props.searchContacts} />
       <Profiles
         contacts={props.contacts}
         refreshContacts={props.refreshContacts}
