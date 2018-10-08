@@ -8,13 +8,13 @@ import './Modal.css';
 const modal = props => {
   const style = ['modal'];
   if (props.show) {
-    style.push('active');
+    style.push('modal--active');
   }
+  
   return (
     <Aux>
-      <Backdrop clicked={props.toggleModal}/>
+      <Backdrop clicked={props.toggleModal} />
       <div className={style.join(' ')}>
-
         <div className='modal__content'>
           {props.children}
         </div>

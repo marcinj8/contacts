@@ -1,4 +1,14 @@
-.detail__flex{
+.details__container {
+  height: 0;
+  animation: hideDetail .2s linear;
+}
+
+.details__container--show {
+  height: 70px;
+  animation: showDetail .2s linear;
+}
+
+.detail__flex {
   display: flex;
   background: rgba(240, 240, 240, 0.75);
   flex-wrap: wrap;
@@ -9,4 +19,24 @@
 .detail__item {
   border-bottom: 1px solid blueviolet;
   margin: 5px 10px;
+}
+
+@keyframes showDetail {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 70px;
+  }
+}
+
+@keyframes hideDetail{
+  0% {
+    height: 70px;
+  }
+
+  100% {
+    height: 0;
+  }
 }

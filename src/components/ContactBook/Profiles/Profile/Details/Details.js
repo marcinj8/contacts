@@ -4,15 +4,19 @@ import '../../../../../App.css';
 import './Detials.css';
 
 const details = props => {
-  // add animation with show props, add new classes
+  let modalClass = ['details__container'];
+  if (props.show) {
+    modalClass='details__container--show';
+  }
+  
   return (
-    <div>
+    <div className={modalClass}>
       <div className='detail__flex'>
         <div className='detail__item'>
-        <i className="material-icons md-18">
-          mail_outline
+          <i className="material-icons md-18">
+            mail_outline
         </i>
-        {props.mail || ' empty'}</div>
+          {props.mail || ' empty'}</div>
         <div className='detail__item'>
           <i className="material-icons md-18" >
             phone

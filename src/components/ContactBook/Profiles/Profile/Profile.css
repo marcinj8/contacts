@@ -7,9 +7,7 @@
   box-sizing: border-box;
 }
 
-.profileCard:hover {
-  background: rgba(255, 255, 255, 0.756);
-}
+
 
 .profileCard__flex {
   padding: 10px;
@@ -26,7 +24,8 @@
 }
 
 .profileCard__button,
-.profileCard__button--edit,
+.profileCard__editButton,
+.profileCard__detailButton,
 .profileCard__button--delete {
   outline: none;
   margin: 0 3px;
@@ -34,24 +33,16 @@
   height: 30px;
   border-radius: 2px;
   border: 1px solid transparent;
-  transition: all .2s linear;
   cursor: pointer;
+  transition: all .2s linear;
 }
 
-.profileCard__button:hover {
-  background: rgb(209, 209, 209);
-  border: 1px solid rgb(220, 182, 255);
-}
 
-.profileCard__button:active {
+.profileCard__detailButton:active {
   background: rgb(199, 199, 199);
   border: 1px solid rgb(132, 0, 255);
 }
 
-.profileCard__button--edit:hover {
-  color: rgb(155, 47, 255);
-  transform: rotate(-25deg);
-}
 
 .profileCard__button--delete {
   padding: 2px;
@@ -61,15 +52,20 @@
   transition: all .2s linear;
 }
 
-.profileCard__button--delete:hover {
-  background: rgb(250, 94, 94);
-  border: 1px solid rgb(255, 96, 96);
-  transform: rotate(90deg)
-}
 
-.profileCard__button--edit:active {
+
+.profileCard__editButton--active {
   color: rgb(94, 0, 182);
   transform: rotate(-45deg);
+}
+
+.profileCard__editButton:active {
+  color: rgb(94, 0, 182);
+  transform: rotate(-45deg);
+}
+
+.profileCard__detailButton--active {
+  transform: rotate(180deg)
 }
 
 .profileCard__button--delete:active {
@@ -77,8 +73,29 @@
   border: 1px solid rgb(255, 0, 0);
 }
 
+.profileCard__button--delete:hover {
+  background: rgb(250, 94, 94);
+  border: 1px solid rgb(255, 96, 96);
+  transform: rotate(90deg)
+}
+
 @media(min-width:500px) {
   .profileCard__name {
     width: 60%;
   }
+
+  .profileCard:hover {
+    background: rgba(255, 255, 255, 0.756);
+  }
+
+  .profileCard__detailButton:hover {
+    background: rgb(209, 209, 209);
+    border: 1px solid rgb(220, 182, 255);
+  }
+
+  .profileCard__editButton:hover {
+    color: rgb(155, 47, 255);
+    transform: rotate(-25deg);
+  }
+
 }

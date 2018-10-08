@@ -8,9 +8,10 @@
   background: gray;
   z-index: 200;
   box-shadow: 10px 15px 10px black;
+  animation: showModal .2s linear;
 }
 
-.modal__content{
+.modal__content {
   padding: 10px;
 }
 
@@ -27,13 +28,28 @@
   border: 1px solid rgb(255, 69, 69);
   background: rgb(255, 123, 123);
 }
+
 .modal__button--delete:hover {
   background: rgb(255, 96, 96);
 }
+
 .modal__button--cancel {
   border: 1px solid rgb(95, 95, 95);
   background: rgb(212, 212, 212);
 }
+
 .modal__button--cancel:hover {
   background: rgb(160, 160, 160);
+}
+
+@keyframes showModal {
+  0% {
+    transform: scale(0);
+    transform: translateY(-100vh)
+  }
+
+  100% {
+    transform: scale(1);
+    transform: translateY(0)
+  }
 }

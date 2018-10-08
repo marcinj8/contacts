@@ -97,6 +97,8 @@ class App extends Component {
     contact.editor = !contact.editor;
     this.setState({
       contacts: contacts,
+      contactsCopy: [],
+      isCopiedContacts: false
     });
   }
 
@@ -118,6 +120,7 @@ class App extends Component {
     navigation[openView] = true;
     this.setState({
       navigation: navigation,
+      refreshContacts: true
     });
   }
 
