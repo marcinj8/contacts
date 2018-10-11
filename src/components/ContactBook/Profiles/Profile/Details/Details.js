@@ -6,22 +6,24 @@ import './Detials.css';
 const details = props => {
   let modalClass = ['details__container'];
   if (props.show) {
-    modalClass='details__container--show';
+    modalClass = 'details__container--show';
   }
-  
+
   return (
     <div className={modalClass}>
       <div className='detail__flex'>
-        <div className='detail__item'>
+        <a href={"mailto:" + props.mail} className='detail__item'>
           <i className="material-icons md-18">
             mail_outline
-        </i>
-          {props.mail || ' empty'}</div>
-        <div className='detail__item'>
+          </i>
+          {props.mail || ' empty'}
+        </a>
+        <a href={"callto:" + props.phone} className='detail__item'>
           <i className="material-icons md-18" >
             phone
           </i>
-          {props.phone || ' empty'}</div>
+          {props.phone || ' empty'}
+        </a>
       </div>
       <div className='detail__flex'>
         <div className='detail__item'>City: {props.city || ' empty'}</div>

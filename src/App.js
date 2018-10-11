@@ -181,7 +181,7 @@ class App extends Component {
     const contacts = [...this.state.contactsCopy];
     const searching = event.target.value;
     const updatedContacts = contacts.filter(contact => {
-      return Boolean(contact.name.includes(searching));
+      return Boolean(contact.name.includes(searching))
     });
 
     this.setState({
@@ -189,22 +189,21 @@ class App extends Component {
     });
   }
 
-  updateInputValue = event => {
-    const updatedInputValue = event.target.value;
+  updateInputValue = value => {
+    const updatedInputValue = value;
     this.setState({
       searchBarValue: updatedInputValue
     });
   }
 
   searchContactsHandler = event => {
-    this.updateInputValue(event)
-
     if (!this.state.isCopiedContacts) {
       this.setState({
         contactsCopy: [...this.state.contacts],
         isCopiedContacts: true
       });
     }
+    this.updateInputValue(event.target.value)
     this.updateContactsList(event);
   }
 

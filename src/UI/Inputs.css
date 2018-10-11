@@ -1,7 +1,7 @@
 .UI__block {
   margin: 5px auto;
   min-width: 200px;
-  width: 45%;
+  width: 50%;
   display: flex;
   flex-wrap: wrap;
 }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Aux from 'react-aux';
 
 import Inputs from '../../../UI/Inputs';
+import Button from '../../../UI/Button/Button';
 
 import './ContactEditor.css';
 
@@ -109,9 +110,12 @@ class ContactEditor extends Component {
       <Aux>
         <div className='contact__editor'>
           {formEditor}
+          <div style={{"width": "100%", 'height': '30px', 'padding': '10px'}}>
+          <Button clicked={this.editContactHandler}>Confirm</Button>
+          <Button clicked={() => this.props.toggleEditor('editor')} class='button__cancel'>Cancel</Button>
+          
+          </div>
         </div>
-        <button onClick={this.editContactHandler}>Confirm</button>
-        <button onClick={() => this.props.toggleEditor('editor')}>Cancel</button>
       </Aux>
     );
   }

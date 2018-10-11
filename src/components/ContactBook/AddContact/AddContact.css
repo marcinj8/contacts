@@ -64,11 +64,6 @@
   border: 1px solid rgb(124, 13, 228);
 }
 
-.addContact__button {
-  width: 60px;
-  margin: 20px auto 0 auto;
-}
-
 @media(min-width: 630px) {
   .addContact__block {
     width: 500px;

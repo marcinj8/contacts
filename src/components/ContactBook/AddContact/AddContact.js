@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Button from '../../../UI/Button/Button';
+
 import './AddContact.css';
 
 class addContact extends Component {
@@ -46,7 +48,7 @@ class addContact extends Component {
         <input className='addContact__input' value={this.state.newContact.phone} onChange={this.changePropertyHandler} name='phone' type="tel" placeholder='phone' />
         <input className='addContact__input' value={this.state.newContact.city} onChange={this.changePropertyHandler} name='city' type="text" placeholder='city' />
         <input className='addContact__input' value={this.state.newContact.street} onChange={this.changePropertyHandler} name='street' type="text" placeholder='street' />
-        <button onClick={() => this.props.clicked(this.state.newContact)} className='addContact__button'>Add</button>
+        <Button clicked={() => this.props.clicked(this.state.newContact)} class='button__addContact'>Add</Button>
       </div>
     )
   }
