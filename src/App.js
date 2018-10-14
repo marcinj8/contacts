@@ -16,7 +16,7 @@ class App extends Component {
     },
     reversedContacts: false,
     contactsCopy: [],
-    isCopiedContacts: false,
+    isSearching: false,
     searchBarValue: ''
   };
 
@@ -43,8 +43,8 @@ class App extends Component {
     }
     this.setState({
       contacts: contacts,
-      contactsCopy: [],
-      isCopiedContacts: false,
+      contactsCopy: contacts,
+      isSearching: false,
       searchBarValue: ''
     });
   }
@@ -86,7 +86,7 @@ class App extends Component {
     this.setState({
       contacts: contacts,
       contactsCopy: [],
-      isCopiedContacts: false
+      isSearching: false
     });
   }
   // merge both functions
@@ -98,7 +98,7 @@ class App extends Component {
     this.setState({
       contacts: contacts,
       contactsCopy: [],
-      isCopiedContacts: false
+      isSearching: false
     });
   }
 
@@ -197,10 +197,10 @@ class App extends Component {
   }
 
   searchContactsHandler = event => {
-    if (!this.state.isCopiedContacts) {
+    if (!this.state.isSearching) {
       this.setState({
         contactsCopy: [...this.state.contacts],
-        isCopiedContacts: true
+        isSearching: true
       });
     }
     this.updateInputValue(event.target.value)

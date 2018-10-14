@@ -1,4 +1,5 @@
 import React from 'react';
+import Transition from 'react-transition-group/Transition';
 
 import Details from './Details/Details';
 import Editor from '../../ContactEditor/ContactEditor';
@@ -16,17 +17,21 @@ const profile = props => {
     detailButtonStyle.push('profileCard__detailButton--active')
   }
 
-  let details = null;
-  if (props.details) {
-    details = (
-      <Details
-        show={props.details}
-        mail={props.mail}
-        phone={props.phone}
-        city={props.city}
-        street={props.street} />
-    )
-  }
+  let details = (
+    <Transition
+      mountOnEnter
+      unmountOnExit
+      in={props.details}
+      timeout={400}>
+      {state => (
+        <Details
+          show={state}
+          mail={props.mail}
+          phone={props.phone}
+          city={props.city}
+          street={props.street} />)}
+    </Transition>
+  )
 
   let editor = null;
   if (props.editor) {
@@ -47,7 +52,7 @@ const profile = props => {
           className={detailButtonStyle.join(' ')}
           onClick={() => props.toggleDetails('details')}>
           <i className="material-icons">
-          arrow_drop_down
+            arrow_drop_down
           </i>
         </button>
         <button

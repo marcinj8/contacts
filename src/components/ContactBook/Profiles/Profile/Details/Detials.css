@@ -1,11 +1,13 @@
 .details__container {
-  height: 0;
-  animation: hideDetail .2s linear;
+  padding: 3px 0;
 }
 
 .details__container--show {
-  min-height: 70px;
-  animation: showDetail .2s linear;
+  animation: showDetail .2s linear forwards;
+}
+
+.details__container--hide {
+  animation: hideDetail .2s linear forwards;
 }
 
 .detail__flex {
@@ -24,19 +26,28 @@
 @keyframes showDetail {
   0% {
     height: 0;
+    transform: scaleY(.3);
   }
 
   100% {
     height: 70px;
+    transform: scaleY(1);
   }
 }
 
-@keyframes hideDetail{
+@keyframes hideDetail {
   0% {
+    transform: opacity(1);
+    transform: scaleY(1);
     height: 70px;
   }
 
+  10% {
+    transform: opacity(0);
+  }
+
   100% {
+    transform: scaleY(.0);
     height: 0;
   }
 }
