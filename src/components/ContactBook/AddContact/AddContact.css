@@ -11,20 +11,23 @@
 }
 
 .addContact__block--active {
-  animation: showBlock 1s linear;
+  animation: showBlock .2s linear;
 }
 
 @keyframes showBlock {
   0% {
+    transform: translateY(+100%);
     opacity: 0;
   }
+
   100% {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 .addContact__block--noActive {
-  animation: hideBlock 1s linear;
+  animation: hideBlock .2s linear;
   display: none
 }
 

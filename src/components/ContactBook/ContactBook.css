@@ -11,25 +11,27 @@
 }
 
 .contactBook__active {
-  animation: showBlock 1s linear;
+  animation: showContactBook .2s linear;
 }
 
-@keyframes showBlock {
+@keyframes showContactBook {
   0% {
+    transform: translateX(+100%);
     opacity: 0;
   }
 
   100% {
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 .contactBook__noActive {
-  animation: hideBlock 1s linear;
+  animation: hideContactBook 1s linear;
   display: none
 }
 
-@keyframes hideBlock {
+@keyframes hideContactBook {
   0% {
     opacity: 1;
   }

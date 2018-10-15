@@ -1,0 +1,42 @@
+.about {
+  background: silver;
+  box-shadow: 3px 3px 3px black;
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  margin: 0 auto;
+  animation: openAbout
+}
+
+.about--active {
+  animation: showAbout .2s linear;
+}
+
+@keyframes showAbout {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.about--noActive {
+  animation: hideAbout .2s linear;
+  display: none
+}
+
+@keyframes hideAbout {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}

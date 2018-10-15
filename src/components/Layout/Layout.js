@@ -4,6 +4,7 @@ import Navigation from '../Navigation/Navigation';
 import ContactBook from '../ContactBook/ContactBook';
 import AddContact from '../ContactBook/AddContact/AddContact';
 import Modal from '../../UI/Modal/Modal';
+import About from '../About/About';
 
 class Layout extends Component {
   state = {
@@ -41,12 +42,18 @@ class Layout extends Component {
           contacts={this.props.contacts}
           toggleDetails={this.props.toggleDetails}
           toggleEditor={this.props.toggleEditor}
-          toggleModal={this.toggleModalHandler} 
+          toggleModal={this.toggleModalHandler}
           sortContacts={this.props.sortContacts}
           searchBarValue={this.props.searchBarValue}
-          searchContacts={this.props.searchContacts}/>
+          searchContacts={this.props.searchContacts} />
       );
     }
+
+    let about = null;
+    if (this.props.navigation.about) {
+      about = <About show={this.props.navigation.about} />
+    }
+
     let modal = null;
     if (this.state.showModal) {
       modal = (
@@ -60,12 +67,16 @@ class Layout extends Component {
     }
 
     return (
-      <div>
+      <div style={{
+        overflow: 'hidden',
+        paddingBottom: '10px'
+      }}>
         <Navigation
           navigation={this.props.navigation}
           navitateTo={this.props.navitateTo} />
         {addContact}
         {contactBook}
+        {about}
         {modal}
       </div>
     );

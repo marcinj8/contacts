@@ -6,6 +6,11 @@ import Editor from '../../ContactEditor/ContactEditor';
 
 import './Profile.css';
 
+const animationDuration = {
+  enter: 400,
+  exit: 150
+}
+
 const profile = props => {
   const editButtonStyle = ['profileCard__editButton']
   if (props.editor) {
@@ -22,7 +27,7 @@ const profile = props => {
       mountOnEnter
       unmountOnExit
       in={props.details}
-      timeout={400}>
+      timeout={animationDuration}>
       {state => (
         <Details
           show={state}

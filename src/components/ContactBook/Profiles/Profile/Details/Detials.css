@@ -3,11 +3,11 @@
 }
 
 .details__container--show {
-  animation: showDetail .2s linear forwards;
+  animation: showDetail .4s linear forwards;
 }
 
 .details__container--hide {
-  animation: hideDetail .2s linear forwards;
+  animation: hideDetail .15s linear forwards;
 }
 
 .detail__flex {
@@ -30,7 +30,7 @@
   }
 
   100% {
-    height: 70px;
+    height: 65px;
     transform: scaleY(1);
   }
 }
@@ -39,7 +39,7 @@
   0% {
     transform: opacity(1);
     transform: scaleY(1);
-    height: 70px;
+    height: 65px;
   }
 
   10% {
