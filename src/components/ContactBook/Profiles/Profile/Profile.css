@@ -97,5 +97,22 @@
     color: rgb(155, 47, 255);
     transform: rotate(-25deg);
   }
+}
 
+.animation-enter {
+  opacity: 0;
+}
+
+.animation-exit {
+  opacity: 1;
+}
+
+.animation-enter-active {
+  transition: opacity 2s;
+  opacity: 1;
+}
+
+.animation-exit-active {
+  transition: opacity 2s;
+  opacity: 0;
 }

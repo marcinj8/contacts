@@ -62,7 +62,7 @@ class Layout extends Component {
             this.props.delete(this.state.contactID);
             this.toggleModalHandler()
           }}
-          toggleModal={this.toggleModalHandler}> You want to delete <b>{this.state.contackName}</b>. Please confirm! </Modal>
+          toggleModal={this.toggleModalHandler}> You want to delete <b>{this.state.contackName}</b>.<br /> Please confirm! </Modal>
       )
     }
 

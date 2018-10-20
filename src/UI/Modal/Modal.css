@@ -53,3 +53,11 @@
     transform: translateY(0)
   }
 }
+
+@media (min-width:500px) {
+  .modal {
+    margin: auto;
+  left: calc(50% - 180px);
+  width: 360px;
+  }
+}

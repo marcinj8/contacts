@@ -1,0 +1,44 @@
+.animation-enter {
+  opacity: 0;
+}
+
+.animation-exit {
+  opacity: 1;
+}
+
+.animation-enter-active {
+  transition: opacity 1s;
+  opacity: 1;
+}
+
+.animation-exit-active {
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+/* @keyframes sd {
+  0% {
+    transform: opacity(0);
+    transform: scaleY(.3);
+  }
+
+  100% {
+    transform: opacity(1);
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hd {
+  0% {
+    transform: opacity(1);
+    transform: scaleY(1);
+  }
+
+  10% {
+    transform: opacity(0);
+  }
+
+  100% {
+    transform: scaleY(.0);
+  }
+} */

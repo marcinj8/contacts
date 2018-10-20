@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import Layout from './components/Layout/Layout';
+import * as actionTypes from './store/actions/actions';
 
 import './App.css';
 
@@ -181,7 +183,7 @@ class App extends Component {
     const contacts = [...this.state.contactsCopy];
     const searching = event.target.value;
     const updatedContacts = contacts.filter(contact => {
-      return Boolean(contact.name.includes(searching))
+      return Boolean(contact.name.includes(searching));
     });
 
     this.setState({
@@ -203,7 +205,7 @@ class App extends Component {
         isSearching: true
       });
     }
-    this.updateInputValue(event.target.value)
+    this.updateInputValue(event.target.value);
     this.updateContactsList(event);
   }
 
@@ -227,4 +229,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return{
+    contacts: state.contacts
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetContacts: (contacts) => dispatch({type: actionTypes.SET_CONTACTS, contacts: contacts})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
